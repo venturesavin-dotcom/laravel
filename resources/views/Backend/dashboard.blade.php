@@ -1,96 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Dashboard</title>
-</head>
+@extends('Backend.master')
 
-<body class="bg-gray-100">
-
-  <div class="flex">
-
-    <!-- Sidebar -->
-    <aside class="w-64 bg-blue-900 min-h-screen text-white p-6">
-      <h1 class="text-2xl font-bold mb-10 flex items-center gap-2">
-        <span class="text-red-500 text-3xl">▲</span> ACHS
-      </h1>
-
-      <nav class="space-y-4">
-        
-      <form action="/dashboard" method="GET">   
-    <button 
-        type="submit"
-        class="flex items-center gap-3 hover:bg-blue-800 p-3 rounded-lg w-full text-left">
-       <span>🏠</span> Dashboard
-    </button>
-</form>
-       
-<form action="/students" method="GET">
-    <button 
-        type="submit"
-        class="flex items-center gap-3 hover:bg-blue-800 p-3 rounded-lg w-full text-left">
-        👨‍🎓 Students
-    </button>
-</form>
-
-        <form action="/courses" method="GET"> 
-    <button 
-        type="submit"
-        class="flex items-center gap-3 hover:bg-blue-800 p-3 rounded-lg w-full text-left">
-        📚 Courses
-    </button>
-</form> 
-
-
-           <form action="/attendence" method="GET"> 
-    <button 
-        type="submit"
-        class="flex items-center gap-3 hover:bg-blue-800 p-3 rounded-lg w-full text-left">
-        📅 Attendance
-    </button>
-</form> 
-
-<form action="/ExamResults" method="GET"> 
-    <button 
-        type="submit"
-        class="flex items-center gap-3 hover:bg-blue-800 p-3 rounded-lg w-full text-left">
-        📝 Exams & Results
-    </button>
-</form>
-
-        <form action="/reports" method="GET"> 
-    <button 
-        type="submit"
-        class="flex items-center gap-3 hover:bg-blue-800 p-3 rounded-lg w-full text-left">
-        📊 Reports
-    </button>
-</form>
-
-              <form action="/settings" method="GET"> 
-    <button 
-        type="submit"
-        class="flex items-center gap-3 hover:bg-blue-800 p-3 rounded-lg w-full text-left">
-        ⚙️ Settings
-    </button>
-</form>
-      </nav>
-
-      <form action="/logout" method="POST">
-    @csrf
-    <button 
-        type="submit"
-        class="mt-10 w-full bg-red-600 py-2 rounded-lg font-semibold text-white">
-        Logout
-    </button>
-</form>
-
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 p-10">
-
+@section('content')
       <!-- Top Bar -->
       <div class="flex justify-between mb-8">
         <h2 class="text-3xl font-semibold">Dashboard</h2>
@@ -133,7 +43,8 @@
       </div>
 
       <!-- Recent Students Table -->
-      <div class="bg-white p-6 rounded-xl shadow">
+
+      <!-- <div class="bg-white p-6 rounded-xl shadow">
         <h3 class="text-xl font-semibold mb-4">Recent Students</h3>
 
         <table class="w-full text-left">
@@ -148,7 +59,6 @@
           </thead>
 
           <tbody class="text-gray-600">
-
             <tr class="border-b">
               <td class="py-3">Mark Smith</td>
               <td>Computer Science</td>
@@ -188,14 +98,7 @@
                 👁️ ✏️ 🗑️
               </td>
             </tr>
-
           </tbody>
         </table>
-      </div>
-
-    </main>
-  </div>
-
-</body>
-</html>
- 
+      </div> -->
+@endsection

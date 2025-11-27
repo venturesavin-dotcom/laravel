@@ -59,21 +59,21 @@
         <h2 class="text-3xl font-semibold">Students</h2>
 
         <div class="flex items-center gap-4">
-          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-            + Add Student
-          </button>
+          <a href="{{ route('students.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+    + Add Student
+</a>
           <span class="text-xl cursor-pointer">🔔</span>
           <span class="w-10 h-10 bg-gray-300 rounded-full cursor-pointer"></span>
         </div>
       </div>
 
-      <!-- Stats Cards -->
+      <!-- Stats Cards - NOW DYNAMIC -->
       <div class="grid grid-cols-4 gap-6 mb-10">
         <div class="bg-white p-6 rounded-xl shadow">
           <p class="text-gray-500 flex items-center gap-2 text-lg">
             👤 Total Students
           </p>
-          <h3 class="text-3xl font-bold mt-2">1,230</h3>
+          <h3 class="text-3xl font-bold mt-2">{{ $students->count() }}</h3>
         </div>
 
         <div class="bg-white p-6 rounded-xl shadow">
@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      <!-- Student List Table -->
+      <!-- Student List Table - NOW DYNAMIC -->
       <div class="bg-white p-6 rounded-xl shadow">
         <div class="flex justify-between items-center mb-6">
           <h3 class="text-xl font-semibold">Student List</h3>
@@ -118,86 +118,34 @@
           <thead>
             <tr class="border-b">
               <th class="pb-3">Name</th>
-              <th class="pb-3">Program</th>
-              <th class="pb-3">Year</th>
-              <th class="pb-3">Status</th>
+              <th class="pb-3">Email</th>
+              <th class="pb-3">Phone</th>
+              <th class="pb-3">Gender</th>
               <th class="pb-3 text-center">Actions</th>
             </tr>
           </thead>
 
           <tbody class="text-gray-600">
+            @foreach($students as $student)
             <tr class="border-b">
-              <td class="py-3">Mark Smith</td>
-              <td>Computer Science</td>
-              <td>2nd year</td>
-              <td><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">Active</span></td>
+              <td class="py-3">{{ $student->first_name }} {{ $student->last_name }}</td>
+              <td>{{ $student->email }}</td>
+              <td>{{ $student->phone ?? 'N/A' }}</td>
+              <td>{{ $student->gender ?? 'N/A' }}</td>
               <td class="text-center">
                 <button class="mx-2 text-blue-600 hover:text-blue-800">👁️</button>
                 <button class="mx-2 text-yellow-600 hover:text-yellow-800">✏️</button>
                 <button class="mx-2 text-red-600 hover:text-red-800">🗑️</button>
               </td>
             </tr>
-
-            <tr class="border-b">
-              <td class="py-3">Alice Johnson</td>
-              <td>Information Technology</td>
-              <td>1st year</td>
-              <td><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">Promoted</span></td>
-              <td class="text-center">
-                <button class="mx-2 text-blue-600 hover:text-blue-800">👁️</button>
-                <button class="mx-2 text-yellow-600 hover:text-yellow-800">✏️</button>
-                <button class="mx-2 text-red-600 hover:text-red-800">🗑️</button>
-              </td>
-            </tr>
-
-            <tr class="border-b">
-              <td class="py-3">Emma Brown</td>
-              <td>Physics</td>
-              <td>1st year</td>
-              <td><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">Active</span></td>
-              <td class="text-center">
-                <button class="mx-2 text-blue-600 hover:text-blue-800">👁️</button>
-                <button class="mx-2 text-yellow-600 hover:text-yellow-800">✏️</button>
-                <button class="mx-2 text-red-600 hover:text-red-800">🗑️</button>
-              </td>
-            </tr>
-
-            <tr class="border-b">
-              <td class="py-3">Adam Williams</td>
-              <td>Mathematics</td>
-              <td>3rd year</td>
-              <td><span class="bg-red-100 text-red-700 px-3 py-1 rounded-full">Suspended</span></td>
-              <td class="text-center">
-                <button class="mx-2 text-blue-600 hover:text-blue-800">👁️</button>
-                <button class="mx-2 text-yellow-600 hover:text-yellow-800">✏️</button>
-                <button class="mx-2 text-red-600 hover:text-red-800">🗑️</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="py-3">Sarah Miller</td>
-              <td>Chemistry</td>
-              <td>4th year</td>
-              <td><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">Graduated</span></td>
-              <td class="text-center">
-                <button class="mx-2 text-blue-600 hover:text-blue-800">👁️</button>
-                <button class="mx-2 text-yellow-600 hover:text-yellow-800">✏️</button>
-                <button class="mx-2 text-red-600 hover:text-red-800">🗑️</button>
-              </td>
-            </tr>
+            @endforeach
           </tbody>
         </table>
 
         <!-- Pagination -->
         <div class="flex justify-between items-center mt-6">
-          <p class="text-gray-500">Showing 1-5 of 1,230 students</p>
-          <div class="flex gap-2">
-            <button class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">← Previous</button>
-            <button class="bg-blue-600 text-white px-3 py-1 rounded">1</button>
-            <button class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">2</button>
-            <button class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">3</button>
-            <button class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">Next →</button>
-          </div>
+          <p class="text-gray-500">Showing {{ $students->count() }} students</p>
+          <!-- We'll add proper pagination later -->
         </div>
       </div>
 

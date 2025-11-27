@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exam;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
-class CoursesController extends Controller
+class ExamsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $courses = Course::all();
-        return view('Backend.courses.index', compact('courses'));
+        $exams = Exam::all();
+        return view('Backend.exams.index', compact('exams'));
     }
 
     /**
@@ -21,7 +22,8 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        return view('Backend.courses.create');
+        $courses = Course::all();
+        return view('Backend.exams.create', compact('courses'));
     }
 
     /**
@@ -29,8 +31,8 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        Course::create($request->all());
-        return redirect('/courses')->with('success', 'Course created successfully.');
+        Exam::create($request->all());
+        return redirect('/exams')->with('success', 'Exam created successfully.');
     }
 
     /**
